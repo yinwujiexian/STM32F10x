@@ -50,7 +50,6 @@
 #ifndef __STM32F10x_H
 #define __STM32F10x_H
 
-#include "stm32f10x_conf.h"
 
 #ifdef __cplusplus
  extern "C" {
