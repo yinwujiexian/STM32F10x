@@ -1,9 +1,11 @@
 Dependencies for Project 'DAC8552', Target 'DAC8552': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (.\main.c)(0x6158449B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x61DFC713)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5D9AD212)
-I (main.h)(0x61581754)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AD218)
+I (main.h)(0x61DE8270)
 I (stm32f10x.h)(0x5EE89D1C)
 I (..\CORE\core_cm3.h)(0x5E368AF6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9AD218)
@@ -33,10 +35,10 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5E368AF6)
-I (..\SYSTEM\usart\usart.h)(0x5EE9D433)
+I (..\SYSTEM\usart\usart.h)(0x61DE8B39)
 I (..\SYSTEM\sys\sys.h)(0x5EE9D435)
 I (..\SYSTEM\delay\delay.h)(0x61583795)
-I (..\Hardware\timer.h)(0x5A9E3AA7)
+I (..\Hardware\timer.h)(0x61DF85E7)
 I (..\Hardware\key.h)(0x61584461)
 I (..\Hardware\dac8552.h)(0x61581E05)
 I (..\Hardware\led.h)(0x6156BECF)
@@ -164,7 +166,11 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5E368AF6)
-F (..\SYSTEM\usart\usart.c)(0x5EE9D434)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+F (..\SYSTEM\usart\usart.c)(0x61DF8DD0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9AD218)
+I (..\SYSTEM\usart\usart.h)(0x61DE8B39)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (..\SYSTEM\sys\sys.h)(0x5EE9D435)
 I (..\USER\stm32f10x.h)(0x5EE89D1C)
 I (..\CORE\core_cm3.h)(0x5E368AF6)
@@ -194,8 +200,6 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5E368AF6)
-I (..\SYSTEM\usart\usart.h)(0x5EE9D433)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 F (..\CORE\core_cm3.c)(0x5E368AF6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\core_cm3.o --omf_browse ..\obj\core_cm3.crf --depend ..\obj\core_cm3.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9AD218)
 F (..\CORE\startup_stm32f10x_hd.s)(0x5E368AF6)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 529" --pd "STM32F10X_HD SETA 1"--list .\listings\startup_stm32f10x_hd.lst --xref -o ..\obj\startup_stm32f10x_hd.o --depend ..\obj\startup_stm32f10x_hd.d)
@@ -998,8 +1002,8 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5E368AF6)
-F (..\Hardware\time.c)(0x6158316F)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\time.o --omf_browse ..\obj\time.crf --depend ..\obj\time.d)
-I (..\USER\main.h)(0x61581754)
+F (..\Hardware\time.c)(0x61DFC713)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware -I ..\Hardware\TFT-I.\RTE\_DAC8552-IC:\Users\jh535\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\time.o --omf_browse ..\obj\time.crf --depend ..\obj\time.d)
+I (..\USER\main.h)(0x61DE8270)
 I (..\USER\stm32f10x.h)(0x5EE89D1C)
 I (..\CORE\core_cm3.h)(0x5E368AF6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9AD218)
@@ -1028,9 +1032,11 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5E368AF6)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5E368AF6)
-I (..\SYSTEM\usart\usart.h)(0x5EE9D433)
+I (..\SYSTEM\usart\usart.h)(0x61DE8B39)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (..\SYSTEM\sys\sys.h)(0x5EE9D435)
 I (..\SYSTEM\delay\delay.h)(0x61583795)
-I (..\Hardware\timer.h)(0x5A9E3AA7)
-I (..\Hardware\LED.h)(0x6156BECF)
+I (..\Hardware\timer.h)(0x61DF85E7)
+I (..\Hardware\TFT\gui.h)(0x615818DA)
+I (..\Hardware\TFT\tft.h)(0x615817D8)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5D9AD212)

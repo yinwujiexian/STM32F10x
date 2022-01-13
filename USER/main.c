@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <string.h>
 #include "main.h"
 #include "timer.h"
 #include "key.h"
@@ -10,8 +12,12 @@
 
 int main(void)
 {
-  int tri_fre = 10;
-  double tri_fre_div = 0;
+  float temp = 0;
+  float getcounter = 0;
+  int wave_flag = 0;
+  // 0——start——————————timer———65536  计数器计数的是start->timer这一段的值
+  //DAC输出方式：wave_start+wave_timer，首先从起步部分开始计数，此时为最小的负电压，
+  //然后计数满整个定时器设定值，最大值便为正电压，从而实现正负电压输出。
 
   delay_init();
   uart_init(115200);
@@ -20,52 +26,97 @@ int main(void)
   LED_Init();
   Lcd_Init();
   DAC8552_GPIO_Init();
-  //默认输出三角波：±2.8V，10Hz
-  TIM3_init(36700, 97); //arr:设置自动重装载寄存器周期的值 //psc:设置时钟频率除数的预分值
-
-  TFT_CS(0);        //打开LCD片选使能
-  GUI_Clear(White); //清屏
-  GUI_sprintf_hzstr16x(10, 0, "Tri_Frequency S3+ S4-", Red, White);
-  GUI_sprintf_hzstr16x(10, 20, "Tri_Frequency:", Red, White);
-  GUI_sprintf_hzstr16x(150, 20, "Hz", Red, White);
-  GUI_sprintf_hzstr16x(10, 60, "PC.0----SYNC", Red, White);
-  GUI_sprintf_hzstr16x(10, 80, "PC.2----SCLK", Red, White);
-  GUI_sprintf_hzstr16x(10, 100, "PC.4----DIN", Red, White);
+  wave_init();
+  //  while (1)
+  //  {
+  //    printf("zifuchuan:%d\r\n", atoi(zifu));
+  //    printf("zifuchuana:%.4f\r\n", atof(str));
+  //    delay_ms(500);
+  //  }
 
   while (1)
   {
-    GUI_number(130, 20, (int)tri_fre, Red, White);
-
-    if (KEY_Scan(0) == KEY0_PRES)
+    if (strstr(USART_RX_BUF, "dac0,") && (USART_RX_STA & 0x8000))
     {
-      tri_fre += 1;
-      if (tri_fre <= 0)
-        tri_fre = 10;
-      else if (tri_fre >= 99)
-        tri_fre = 10;
-      GUI_sprintf_hzstr16x(130, 20, "  ", Red, White);
-      GUI_number(130, 20, tri_fre, Red, White);
-      tri_fre_div = 367 * tri_fre;
-      tri_fre_div = (360000 / tri_fre_div) - 1;
-      printf("tri_fre_div=%d\r\n", (int)tri_fre_div);
-      TIM3_init(36700, (int)tri_fre_div);
+      if (strstr(USART_RX_BUF, "voltage set to") != NULL)
+      {
+        wave_voltage = atof(USART_RX_BUF);
+        printf("wave_voltage=%.2f\r\n", wave_voltage);
+        change_flag = 1;
+        USART_RX_STA = 0;
+				USART_RX_BUF[199]=0;
+      }
+      else if (strstr(USART_RX_BUF, "wave set to") != NULL)
+      {
+        tri_or_sin = atoi(USART_RX_BUF);
+				if(tri_or_sin)
+				{printf("wave:sin\r\n");}
+        else {printf("wave:tri\r\n");}
+        wave_flag = 1;
+        USART_RX_STA = 0;
+				USART_RX_BUF[199]=0;
+      }
+      else if (strstr(USART_RX_BUF, "freq set to") != NULL)
+      {
+        wave_frequency = atoi(USART_RX_BUF);
+        printf("wave_frequency:%d\r\n", wave_frequency);
+        change_flag = 1;
+        USART_RX_STA = 0;
+				USART_RX_BUF[199]=0;
+      }
     }
-    else if (KEY_Scan2(0) == WKUP_PRES)
+		else if(strstr(USART_RX_BUF, "IDN") && (USART_RX_STA & 0x8000))
+		{
+			printf("123456\n");
+			USART_RX_STA = 0;
+			USART_RX_BUF[199]=0;
+		}
+    if (change_flag)
     {
-      tri_fre = tri_fre - 1;
-      if (tri_fre <= 0)
-        tri_fre = 10;
-      else if (tri_fre >= 99)
-        tri_fre = 10;
-      GUI_sprintf_hzstr16x(130, 20, "  ", Red, White);
-      GUI_number(130, 20, tri_fre, Red, White);
-      tri_fre_div = 367 * tri_fre;
-      tri_fre_div = (360000 / tri_fre_div) - 1;
-      printf("tri_fre_div=%d\r\n", (int)tri_fre_div);
-      TIM3_init(36700, (int)tri_fre_div);
-    }
+      wave_timer = wave_voltage * 65536 / 5;
+      wave_fre_div = wave_timer * wave_frequency;
+      wave_fre_div = (36000000 / wave_fre_div) - 1;
+      wave_start = (5 - wave_voltage) * 65536 / 10;
+      TIM3_init(wave_timer, (int)wave_fre_div);
 
-    DAC8552_Write_CHA(TIM_GetCounter(TIM3) + 14417);
-    DAC8552_Write_CHB(TIM_GetCounter(TIM3) + 14417);
+      GUI_sprintf_hzstr16x(115, 40, "    ", Red, White);
+      GUI_number(115, 40, wave_voltage, Red, White);
+      GUI_sprintf_hzstr16x(125, 40, ".", Red, White);
+      GUI_number(135, 40, wave_voltage * 10 - (int)wave_voltage * 10, Red, White);
+      GUI_sprintf_hzstr16x(130, 60, "  ", Red, White);
+      GUI_number(130, 60, wave_frequency, Red, White);
+
+      change_flag = 0;
+    }
+    if (tri_or_sin && wave_flag) //输出正弦波
+    {
+      GUI_sprintf_hzstr16x(110, 20, "   ", Red, White);
+      GUI_sprintf_hzstr16x(110, 20, "Sin", Red, White);
+    }
+    else if (tri_or_sin == 0 && wave_flag) //输出三角波
+    {
+      GUI_sprintf_hzstr16x(110, 20, "   ", Red, White);
+      GUI_sprintf_hzstr16x(110, 20, "Tri", Red, White);
+    }
+    if (tri_or_sin)
+    {
+      //首先使用定时器的数据转化为/PI/2到PI/2的弧度值
+      //再将弧度值通过sin计算
+      //再将sin值转为寄存器值0——timer
+      //最后加上start
+      temp = TIM_GetCounter(TIM3);
+      temp = (temp * PI) / (wave_timer);
+      temp = temp - PI / 2;
+      temp = sin(temp);
+      getcounter = (wave_timer / 2) * temp + (wave_timer / 2) + 300;
+      getcounter += wave_start;
+      wave_flag = 0;
+    }
+    else
+    {
+      getcounter = TIM_GetCounter(TIM3) + wave_start;
+      wave_flag = 0;
+    }
+    DAC8552_Write_CHA(getcounter);
   }
 }

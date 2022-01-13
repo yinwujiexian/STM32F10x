@@ -34,4 +34,6 @@
 ..\obj\time.o: ..\SYSTEM\sys\sys.h
 ..\obj\time.o: ..\SYSTEM\delay\delay.h
 ..\obj\time.o: ..\Hardware\timer.h
-..\obj\time.o: ..\Hardware\LED.h
+..\obj\time.o: ..\Hardware\TFT\gui.h
+..\obj\time.o: ..\Hardware\TFT\tft.h
+..\obj\time.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
